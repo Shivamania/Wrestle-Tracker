@@ -38,18 +38,6 @@ public class Main_class extends JFrame {
         });
         img.add(add0);
 
-        JButton add1 = new JButton("SMACKDOWN");
-        add1.setBounds(665,270,150,40);
-        add1.setForeground(Color.white);
-        add1.setBackground(Color.black);
-        add1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        img.add(add1);
-
         JButton add = new JButton("Add Wrestler");
         add.setBounds(335,370,150,40);
         add.setForeground(Color.white);
@@ -71,25 +59,15 @@ public class Main_class extends JFrame {
         add2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new UpdateWrestler("");
+                setVisible(false);
             }
         });
         img.add(add2);
 
-        JButton add3 = new JButton("HALL OF FAMER");
-        add3.setBounds(335,470,150,40);
-        add3.setForeground(Color.white);
-        add3.setBackground(Color.black);
-        add3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        img.add(add3);
 
         JButton add4 = new JButton("ALUMNI");
-        add4.setBounds(665,470,150,40);
+        add4.setBounds(665,270,150,40);
         add4.setForeground(Color.white);
         add4.setBackground(Color.black);
         add4.addActionListener(new ActionListener() {
