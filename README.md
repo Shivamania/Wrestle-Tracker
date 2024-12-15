@@ -15,14 +15,8 @@ Wrestle-Tracker is an intuitive desktop application designed to manage wrestler 
 
 ---
 
-## Demonstration
-### Screenshots
-1. **Home Screen**: A visually appealing landing page with navigation buttons. [View Screenshot](#) *(Insert link here)*
-2. **Add Wrestler Page**: Form for entering wrestler details. [View Screenshot](#) *(Insert link here)*
-3. **Update Info Page**: Interface to modify existing records. [View Screenshot](#) *(Insert link here)*
-
-### Demo Video
-A comprehensive demo video showcasing all features can be found [here](https://example.com/demo-video). *(Replace with actual link)*
+## Demonstration Video
+A comprehensive demo video showcasing all features can be found [here](https://www.linkedin.com/feed/update/urn:li:activity:7157026317299859456/).
 
 ---
 
