@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class UpdateWrestler extends JFrame implements ActionListener {
@@ -18,7 +19,7 @@ public class UpdateWrestler extends JFrame implements ActionListener {
         this.number = number;
         getContentPane().setBackground(new Color(163, 189, 255));
 
-        JLabel heading = new JLabel("Add Wrestler's Details");
+        JLabel heading = new JLabel("Update Wrestler's Details");
         heading.setBounds(320, 30, 500, 50);
         heading.setFont(new Font("serif", Font.BOLD, 25));
         add(heading);
@@ -38,7 +39,7 @@ public class UpdateWrestler extends JFrame implements ActionListener {
         real.setFont(new Font("SAN_SERIF", Font.BOLD, 20));
         add(real);
 
-        realname = new JLabel(); 
+        realname = new JLabel();
         realname.setBounds(600, 150, 150, 30);
         realname.setFont(new Font("Tahoma", Font.BOLD, 18));
         add(realname);
@@ -48,7 +49,7 @@ public class UpdateWrestler extends JFrame implements ActionListener {
         debut.setFont(new Font("SAN_SERIF", Font.BOLD, 20));
         add(debut);
 
-        debutdate = new JLabel(); 
+        debutdate = new JLabel();
         debutdate.setBounds(250, 200, 150, 30);
         debutdate.setFont(new Font("Tahoma", Font.BOLD, 18));
         add(debutdate);
@@ -136,8 +137,11 @@ public class UpdateWrestler extends JFrame implements ActionListener {
 
         try {
             conn c = new conn();
-            String query = "select * from wrestler where id = '" + number + "'";
-            ResultSet resultSet = c.statement.executeQuery(query);
+            String query = "SELECT * FROM wrestler WHERE id = ?";
+            PreparedStatement ps = c.connection.prepareStatement(query);
+            ps.setString(1, number);
+            ResultSet resultSet = ps.executeQuery();
+
             while (resultSet.next()) {
                 ringname.setText(resultSet.getString("ring"));
                 realname.setText(resultSet.getString("real"));
@@ -155,7 +159,7 @@ public class UpdateWrestler extends JFrame implements ActionListener {
             e.printStackTrace();
         }
 
-        add = new JButton("ADD");
+        add = new JButton("UPDATE");
         add.setBounds(450, 550, 150, 40);
         add.setBackground(Color.black);
         add.setForeground(Color.white);
@@ -192,12 +196,21 @@ public class UpdateWrestler extends JFrame implements ActionListener {
 
             try {
                 conn c = new conn();
-                String query = "UPDATE wrestler SET ring = '" + ring + "', real = '" + real + "', debut = '" + debut + "', 
-                    age1 = '" + age1 + "', rank = '" + rank + "', belt = '" + belt + "', worth = '" + worth + "', 
-                    move = '" + move + "', brand = '" + brand + "', winning = '" + winning + "' WHERE digit = '" + digit + "'";
-                
-                c.statement.executeUpdate(query);
+                String query = "UPDATE wrestler SET ring = ?, real = ?, debut = ?, age1 = ?, rank = ?, belt = ?, worth = ?, move = ?, brand = ?, winning = ? WHERE digit = ?";
+                PreparedStatement ps = c.connection.prepareStatement(query);
+                ps.setString(1, ring);
+                ps.setString(2, real);
+                ps.setString(3, debut);
+                ps.setString(4, age1);
+                ps.setString(5, rank);
+                ps.setString(6, belt);
+                ps.setString(7, worth);
+                ps.setString(8, move);
+                ps.setString(9, brand);
+                ps.setString(10, winning);
+                ps.setString(11, digit);
 
+                ps.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Wrestler details updated successfully!");
                 setVisible(false);
                 new View_Raw();
