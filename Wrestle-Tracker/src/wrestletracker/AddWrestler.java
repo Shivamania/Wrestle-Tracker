@@ -211,17 +211,30 @@ public class AddWrestler extends JFrame implements ActionListener {
 
 
             try {
-                conn c = new conn();
-                String query = "insert into wrestler values('"+ring+"','"+real+"','"+debut+"','"+age1+"','"+rank+"','"+belt+"','"+worth+"','"+move+"','"+brand+"','"+winning+"','"+digit+"')";
-                c.statement.executeUpdate(query);
-                JOptionPane.showMessageDialog(null,"Details Added Successfully !");
-                setVisible(false);
-                new Main_class();
-
-            }catch (Exception E) {
-                E.printStackTrace();
-            }
-
+    conn c = new conn();
+    String query = "INSERT INTO wrestler (ring, real, debut, age, rank, belt, worth, move, brand, winning, digit) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
+    PreparedStatement preparedStatement = c.connection.prepareStatement(query);
+    preparedStatement.setString(1, ring);
+    preparedStatement.setString(2, real);
+    preparedStatement.setString(3, debut);
+    preparedStatement.setString(4, age1);
+    preparedStatement.setString(5, rank);
+    preparedStatement.setString(6, belt);
+    preparedStatement.setString(7, worth);
+    preparedStatement.setString(8, move);
+    preparedStatement.setString(9, brand);
+    preparedStatement.setString(10, winning);
+    preparedStatement.setString(11, digit);
+    
+    preparedStatement.executeUpdate();
+    JOptionPane.showMessageDialog(null, "Details Added Successfully!");
+    setVisible(false);
+    new Main_class();
+} catch (Exception e) {
+    e.printStackTrace();
+}
 
         }
     }
